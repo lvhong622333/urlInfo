@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd 
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-lazy-init="true">
+
+	<description>dubbo分布式框架生产者配置</description>
+
+	<!-- 加载配置属性文件 -->
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath:appconfig.properties" />
+	<!-- dubbo分布式框架配置文件开始 -->
+		<dubbo:application name="demo-provider"/>
+		<dubbo:registry address="zookeeper://106.14.179.140:2181"/>
+		<dubbo:protocol name="dubbo" port="20880"/>
+		<dubbo:service interface="com.lvhong.interf.DubboService" ref="dubboService" />
+	<!-- dubbo分布式框架配置文件结束 -->
+</beans>
