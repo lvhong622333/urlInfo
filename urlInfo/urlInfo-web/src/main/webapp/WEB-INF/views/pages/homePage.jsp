@@ -9,14 +9,15 @@
 <style type="text/css">
 img {
 	height: 520px !important;
-	display: inline-block!important;
+	display: inline-block !important;
 }
-.item{
-	margin-left: 122px!important;
+
+.item {
+	padding-left: 350px !important;
 }
 </style>
 <script type="text/javascript">
-	$(function(){
+	$(function() {
 		$("#urlPage").addClass("active");
 		$("#urlSearch").removeClass("active");
 		$("#urlInput").removeClass("active");
@@ -38,25 +39,19 @@ img {
 		<div class="carousel-inner">
 			<div class="item active">
 				<a href="https://www.baidu.com"> <img
-					src="http://s10.sinaimg.cn/mw690/006LDoUHzy7auXEvyzLd9&690"
+					src="https://goss.veer.com/creative/vcg/veer/1600water/veer-154678248.jpg"
 					alt="First slide">
-					<img alt="" src="http://www.hinews.cn/pic/0/12/18/96/12189608_673256.jpg">
 				</a>
 			</div>
 			<div class="item">
-				<a href="https://www.sohu.com">				
-					<img
-						src="http://s8.sinaimg.cn/middle/8ee3e0acxb0171b491f27&690"
-						alt="Second slide">
-					<img alt="" src="http://i2.sinaimg.cn/ent/j/2013-12-11/U1345P28T3D4058821F329DT20131211175800.jpg">
+				<a href="https://www.sohu.com"> <img
+					src="http://img15.3lian.com/2015/a1/14/d/91.jpg" alt="Second slide">
 				</a>
 			</div>
 			<div class="item">
-				<a href="https://v.qq.com/">				
-					<img
-						src="http://img.mp.sohu.com/upload/20170511/0e772de531824af09ea29dcb94055d48_th.png"
-						alt="Third slide">
-					<img alt="" src="http://s2.sinaimg.cn/middle/64fa6e0ag7fa0f4f18db1&690">
+				<a href="https://v.qq.com/"> <img
+					src="http://pic5.photophoto.cn/20071228/0034034901778224_b.jpg"
+					alt="Third slide">
 				</a>
 			</div>
 		</div>
