@@ -104,12 +104,13 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="querySelectorsInfo" resultMap="BaseResultMap">
-  	select dict_value,dict_name from tm_dictonary where dict_type = 1 
+  	select dict_value,dict_name from tm_dictonary where dict_type = 1 and isvalid = 1
   </select>
   <sql id="urlTypeSearchWhere">
-  	<trim prefix="where" prefixOverrides="AND||OR">  		
+  	<trim prefix="where" prefixOverrides="AND||OR">  	
+  		isvalid = 1
   		<if test="searchText != null and searchText != ''">
-  			dict_value like concat('%',#{searchText},'%') or dict_name like concat('%',#{searchText},'%')
+  			and (dict_value like concat('%',#{searchText},'%') or dict_name like concat('%',#{searchText},'%'))
   		</if>
   	</trim>
 	<if test="sortName == 'dictValue'">
@@ -133,4 +134,10 @@
   <select id="urlTypeSearch" resultMap="BaseResultMap" parameterType="com.lvhong.core.pojo.TmDictonarySearch">
   		select <include refid="Base_Column_List"></include> from tm_dictonary <include refid="urlTypeSearchWhere"></include> limit #{pageNo},#{limit}
   </select>
+  <update id="deleteDictInfo" >
+  	update tm_dictonary set isvalid = 0 where id in
+  	<foreach collection="array" item="param" index="index" open="(" close=")" separator=",">
+  		#{param}
+  	</foreach>
+  </update>
 </mapper>

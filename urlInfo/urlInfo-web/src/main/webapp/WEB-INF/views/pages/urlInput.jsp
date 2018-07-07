@@ -10,6 +10,7 @@
 	src="${pageContext.request.contextPath}/static/js/urlInput.js"></script>
 <script type="text/javascript">
 	$(function() {
+		$("#urlPage").removeClass("active");
 		$("#urlSearch").removeClass("active");
 		$("#urlInput").addClass("active");
 		$("#urlTypeInput").removeClass("active");
