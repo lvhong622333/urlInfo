@@ -24,9 +24,4 @@ public class UrlSearchController {
 		return page;
 	}
 	
-	@RequestMapping("/urlSearchPage")
-	public String urlSearchPage() {
-		return "/views/pages/urlSearch";
-	}
-	
 }

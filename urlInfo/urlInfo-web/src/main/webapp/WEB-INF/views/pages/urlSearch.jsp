@@ -11,6 +11,7 @@
 	$(function() {
 		window.ctx = '${pageContext.request.contextPath}';
 		setTableInfo();
+		$("#urlPage").removeClass("active");
 		$("#urlInput").removeClass("active");
 		$("#urlSearch").addClass("active");
 		$("#urlTypeInput").removeClass("active");
@@ -40,7 +41,7 @@
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" style="width: 800px; height: 400px;">
+			<div class="modal-dialog" style="width: 800px; height: 400px;margin-left: 300px;margin-top: 150px;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"

@@ -19,12 +19,6 @@ public class LoginController {
 	@Resource
 	UserService userService;
 	
-//	@RequestMapping("/login/{login}")
-//	public String login(@PathVariable String login) {
-//		String url = "/views/pages/" + login;
-//		return url;
-//	}
-	
 	@RequestMapping("/login")
 	public String login(String userName ,String password,Model model,HttpSession session) {
 		if(userName == null || "".equals(userName)) {

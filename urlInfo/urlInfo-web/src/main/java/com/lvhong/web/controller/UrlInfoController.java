@@ -4,9 +4,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.lvhong.core.pojo.ResponseResult;
 import com.lvhong.shiro.pojo.User;
 import com.lvhong.web.pojo.TmUrlInfo;
@@ -19,9 +19,10 @@ public class UrlInfoController {
 	@Resource
 	private UrlInfoService urlInfoService;
 	
-	@RequestMapping("/urlInputPage")
-	public String urlInputPage() {
-		return "/views/pages/urlInput";
+	@RequestMapping("/page/{urlInputPage}")
+	public String urlInputPage(@PathVariable String urlInputPage) {
+		String page = "/views/pages/" + urlInputPage;
+		return page;
 	}
 	
 	@RequestMapping("/urlInput")

@@ -12,4 +12,10 @@ public interface SelectorsService {
 
 	PageList<TmDictonary> urlTypeSearch(TmDictonarySearch search);
 
+	void deleteDictInfo(String dictInfos);
+
+	void addDictInfo(TmDictonary tmDictonary);
+
+	void updateDictInfo(TmDictonary tmDictonary);
+
 }

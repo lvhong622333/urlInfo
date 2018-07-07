@@ -34,4 +34,21 @@ public class SelectorsServiceImpl implements SelectorsService {
 		return page;
 	}
 
+	@Override
+	public void deleteDictInfo(String dictInfos) {
+		String[] infos = dictInfos.split(",");
+		tmDictonaryMappper.deleteDictInfo(infos);
+	}
+
+	@Override
+	public void addDictInfo(TmDictonary tmDictonary) {
+		tmDictonary.setIsvalid("0");
+		tmDictonaryMappper.insertSelective(tmDictonary);
+	}
+
+	@Override
+	public void updateDictInfo(TmDictonary tmDictonary) {
+		tmDictonaryMappper.updateByPrimaryKeySelective(tmDictonary);
+	}
+
 }

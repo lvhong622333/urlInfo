@@ -22,4 +22,6 @@ public interface TmDictonaryMapper {
 	List<TmDictonary> urlTypeSearch(TmDictonarySearch search);
 
 	Integer urlTypeSearchCount(TmDictonarySearch search);
+
+	void deleteDictInfo(String[] infos);
 }
