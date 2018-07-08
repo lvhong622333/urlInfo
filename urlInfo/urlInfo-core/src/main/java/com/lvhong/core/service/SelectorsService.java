@@ -1,5 +1,6 @@
 package com.lvhong.core.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.lvhong.core.pojo.PageList;
@@ -8,7 +9,7 @@ import com.lvhong.core.pojo.TmDictonarySearch;
 
 public interface SelectorsService {
 
-	List<TmDictonary> querySelectorsInfo();
+	List<TmDictonary> querySelectorsInfo(Date dictDate);
 
 	PageList<TmDictonary> urlTypeSearch(TmDictonarySearch search);
 

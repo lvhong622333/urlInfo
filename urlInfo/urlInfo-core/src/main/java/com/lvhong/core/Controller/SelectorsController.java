@@ -1,7 +1,10 @@
 package com.lvhong.core.Controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,8 +24,9 @@ public class SelectorsController {
 	
 	@RequestMapping("/getSelectors")
 	@ResponseBody
-	public List<TmDictonary> getSelectors() {
-		List<TmDictonary> list = selecetorsService.querySelectorsInfo();
+	public List<TmDictonary> getSelectors(HttpSession session) {
+		Date dictDate = (Date) session.getAttribute("sysCacheDictInfo");
+		List<TmDictonary> list = selecetorsService.querySelectorsInfo(dictDate);
 		return list;
 	}
 	
@@ -35,19 +39,21 @@ public class SelectorsController {
 	
 	@RequestMapping("/deleteDictInfo")
 	@ResponseBody
-	public String deleteDictInfo(String dictInfos) {
+	public String deleteDictInfo(String dictInfos,HttpSession session) {
 		selecetorsService.deleteDictInfo(dictInfos);
+		session.setAttribute("sysCacheDictInfo", new Date());
 		return "";
 	}
 	@RequestMapping("/addDictInfo")
 	@ResponseBody
-	public ResponseResult addDictInfo(TmDictonary tmDictonary) {
+	public ResponseResult addDictInfo(TmDictonary tmDictonary,HttpSession session) {
 		ResponseResult resp = new ResponseResult();
 		try {			
 			selecetorsService.addDictInfo(tmDictonary);
 			resp.setStatusCode(200);
 			resp.setStatusInfo("数据信息添加成功！");
 			resp.setSuccessOrError("success");
+			session.setAttribute("sysCacheDictInfo", new Date());
 			return resp;
 		}catch(Exception e) {
 			resp.setStatusCode(500);
@@ -59,13 +65,14 @@ public class SelectorsController {
 	
 	@RequestMapping("/updateDictInfo")
 	@ResponseBody
-	public ResponseResult updateDictInfo(TmDictonary tmDictonary) {
+	public ResponseResult updateDictInfo(TmDictonary tmDictonary , HttpSession session) {
 		ResponseResult resp = new ResponseResult();
 		try {			
 			selecetorsService.updateDictInfo(tmDictonary);
 			resp.setStatusCode(200);
 			resp.setStatusInfo("数据信息添加成功！");
 			resp.setSuccessOrError("success");
+			session.setAttribute("sysCacheDictInfo", new Date());
 			return resp;
 		}catch(Exception e) {
 			resp.setStatusCode(500);

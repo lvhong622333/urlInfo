@@ -1,5 +1,6 @@
 package com.lvhong.core.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 
@@ -17,10 +18,11 @@ public class SelectorsServiceImpl implements SelectorsService {
 	@Resource
 	private TmDictonaryMapper tmDictonaryMappper;
 	
-	@Cacheable(value="sysCache",key="#root.methodName")
+	@Cacheable(value="sysCache",key="#root.methodName + ':' + #dictDate")
 	@Override
-	public List<TmDictonary> querySelectorsInfo() {
-		return tmDictonaryMappper.querySelectorsInfo();
+	public List<TmDictonary> querySelectorsInfo(Date dictDate) {
+		List<TmDictonary> querySelectorsInfo = tmDictonaryMappper.querySelectorsInfo();
+		return querySelectorsInfo;
 	}
 
 	@Override
