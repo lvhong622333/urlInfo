@@ -150,7 +150,7 @@
     select 
     <include refid="Base_Column_List" />
     from tm_sys_user
-    where (ISVALID = 1 or ISVALID is null)
+    where isvalid = 1
     <if test="telePhone != null">    
     		and tele_phone = #{telePhone,jdbcType=VARCHAR}
     </if>
