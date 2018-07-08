@@ -32,7 +32,9 @@
 			dictName:$("#dictName").val(),
 			dictType:$("#dictType").val()
 		},function(data){
-			window.location.reload();
+			$.MsgBox.Confirm("确认框", "字典信息添加成功，等待审批", function() {
+				window.location.reload();
+			});
 		});
 	}
 	
@@ -62,7 +64,9 @@
 			dictName:$("#dictName").val(),
 			dictType:$("#dictType").val()
 		},function(data){
-			window.location.reload();
+			$.MsgBox.Confirm("确认框", "信息已更新，等待审批", function() {
+				window.location.reload();
+			});
 		})
 	}
 	
@@ -81,7 +85,9 @@
 				}
 			}
 			$.post(window.ctx + "/urlInfo/deleteDictInfo",{dictInfos:dictInfos},function(data){
-				window.location.reload();
+				$.MsgBox.Confirm("确认框", "信息已删除，等待审批", function() {
+					window.location.reload();
+				});
 			});
 		}
 		
