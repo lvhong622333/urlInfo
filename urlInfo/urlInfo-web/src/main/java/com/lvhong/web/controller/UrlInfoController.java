@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,17 +21,25 @@ public class UrlInfoController {
 	private UrlInfoService urlInfoService;
 	
 	@RequestMapping("/page/{urlInputPage}")
-	public String urlInputPage(@PathVariable String urlInputPage) {
+	public String urlInputPage(@PathVariable String urlInputPage , @ModelAttribute("inputFailInfo") String inputFailInfo , Model model) {
 		String page = "/views/pages/" + urlInputPage;
+		if(inputFailInfo != null && inputFailInfo != "") {
+			model.addAttribute("inputFailInfo", inputFailInfo);
+		}
 		return page;
 	}
 	
 	@RequestMapping("/urlInput")
 	public String urlInput(TmUrlInfo urlInfo,Model model,HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		urlInfo.setCreateBy(user.getId());
-		urlInfoService.insertUrlInfo(urlInfo);
-		return "redirect:/urlInfo/urlSearchPage";
+		try {			
+			User user = (User) session.getAttribute("user");
+			urlInfo.setCreateBy(user.getId());
+			urlInfoService.insertUrlInfo(urlInfo);
+			return "redirect:/urlInfo/page/urlSearch";
+		}catch(Exception e) {
+			model.addAttribute("inputFailInfo", "对不起，你输入的网址信息已存在！");
+			return "redirect:/urlInfo/page/urlInput";
+		}
 	}
 	
 	@RequestMapping("/updateUrlInfo")
