@@ -3,9 +3,11 @@ package com.lvhong.core.service.impl;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
-
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.lvhong.core.dao.TmDictonaryMapper;
 import com.lvhong.core.pojo.PageList;
 import com.lvhong.core.pojo.TmDictonary;
@@ -17,6 +19,12 @@ public class SelectorsServiceImpl implements SelectorsService {
 	
 	@Resource
 	private TmDictonaryMapper tmDictonaryMappper;
+	
+	@Resource
+	private RuntimeService runtimeService;
+	
+	@Resource
+	private TaskService taskService;
 	
 	@Cacheable(value="sysCache",key="#root.methodName + ':' + #dictDate")
 	@Override
@@ -37,18 +45,21 @@ public class SelectorsServiceImpl implements SelectorsService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteDictInfo(String dictInfos) {
 		String[] infos = dictInfos.split(",");
 		tmDictonaryMappper.deleteDictInfo(infos);
 	}
 
 	@Override
+	@Transactional
 	public void addDictInfo(TmDictonary tmDictonary) {
 		tmDictonary.setIsvalid("0");
 		tmDictonaryMappper.insertSelective(tmDictonary);
 	}
 
 	@Override
+	@Transactional
 	public void updateDictInfo(TmDictonary tmDictonary) {
 		tmDictonaryMappper.updateByPrimaryKeySelective(tmDictonary);
 	}

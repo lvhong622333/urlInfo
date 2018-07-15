@@ -206,7 +206,7 @@
 				<artifactId>activiti-spring</artifactId>
 			</dependency>
 			<!-- 网页版的流程设计器 -->
-			<dependency>
+			<!-- <dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-explorer</artifactId>
 				<exclusions>
@@ -231,7 +231,7 @@
 			<dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-diagram-rest</artifactId>
-			</dependency>
+			</dependency> -->
 			<!-- LOGGING begin -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
