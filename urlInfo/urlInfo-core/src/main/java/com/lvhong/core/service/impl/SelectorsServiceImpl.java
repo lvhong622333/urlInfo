@@ -1,7 +1,9 @@
 package com.lvhong.core.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -54,8 +56,17 @@ public class SelectorsServiceImpl implements SelectorsService {
 	@Override
 	@Transactional
 	public void addDictInfo(TmDictonary tmDictonary) {
+		//获取序列值作为主键
+		Long id = tmDictonaryMappper.querySequenceId();
 		tmDictonary.setIsvalid("0");
+		tmDictonary.setId(id);
 		tmDictonaryMappper.insertSelective(tmDictonary);
+		//启动流程
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("admin", "superAdmin");
+		map.put("user", "lvhong");
+		map.put("dictName", tmDictonary.getDictName());
+		runtimeService.startProcessInstanceByKey("urlTypeApprove",id.toString(), map);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface TmDictonaryMapper {
 
     int insert(TmDictonary record);
 
-    int insertSelective(TmDictonary record);
+    void insertSelective(TmDictonary record);
 
     TmDictonary selectByPrimaryKey(Integer id);
 
@@ -24,4 +24,6 @@ public interface TmDictonaryMapper {
 	Integer urlTypeSearchCount(TmDictonarySearch search);
 
 	void deleteDictInfo(String[] infos);
+
+	Long querySequenceId();
 }

@@ -302,6 +302,10 @@
 				<groupId>com.fasterxml.jackson.module</groupId>
 				<artifactId>jackson-module-jaxb-annotations</artifactId>
 			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.jaxrs</groupId>
+				<artifactId>jackson-jaxrs-json-provider</artifactId>
+			</dependency>
 			<!-- xstream xml 用于java对象和xml文件相互转换 -->
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>

@@ -30,11 +30,14 @@
       #{dictDesc,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}, #{isvalid,jdbcType=CHAR}
       )
   </insert>
+  <select id="querySequenceId" resultType="java.lang.Long">
+  	 select nextval('url_info_id')
+  </select>
   <insert id="insertSelective" parameterType="com.lvhong.core.pojo.TmDictonary">
     insert into tm_dictonary
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="id != null">     
+      	id,
       </if>
       <if test="dictValue != null">
         dict_value,
@@ -54,7 +57,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      	#{id},
       </if>
       <if test="dictValue != null">
         #{dictValue,jdbcType=VARCHAR},

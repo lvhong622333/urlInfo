@@ -9,7 +9,7 @@ public class TmDictonary implements Serializable{
 	 */
 	private static final long serialVersionUID = 8270455947664901698L;
 
-	private Integer id;
+	private Long id;
 
     private String dictValue;
 
@@ -21,15 +21,15 @@ public class TmDictonary implements Serializable{
 
     private String isvalid;
 
-    public Integer getId() {
-        return id;
-    }
+    public Long getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDictValue() {
+	public String getDictValue() {
         return dictValue;
     }
 
