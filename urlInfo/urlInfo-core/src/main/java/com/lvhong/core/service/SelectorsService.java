@@ -19,4 +19,15 @@ public interface SelectorsService {
 
 	void updateDictInfo(TmDictonary tmDictonary);
 
+	TmDictonary queryDictInfo(String businessKey);
+
+	String queryFlowUrl(String substring, String taskDefinitionKey);
+
+	void agencyAdminapprove(String taskId, String approveAdvice, String processInstanceId, Boolean flags, Long dictId);
+
+	void agencyApply(String taskId, String approveAdvice, String processInstanceId, Boolean flags,
+			TmDictonary tmDictionary);
+
+	List<TmDictonary> queryImportDictInfo();
+
 }

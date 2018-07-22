@@ -22,4 +22,6 @@ public interface TmUrlInfoMapper {
 	Integer queryUrlInfoCount(UrlInfoSearch search);
 
 	void deleteBatchByPrimaryKey(String[] paramList);
+
+	List<TmUrlInfo> queryImportUrlInfo();
 }

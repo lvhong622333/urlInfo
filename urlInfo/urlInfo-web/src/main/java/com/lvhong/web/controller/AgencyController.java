@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -16,7 +17,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.lvhong.core.pojo.PageList;
 import com.lvhong.core.pojo.TaskImpl;
-import com.lvhong.shiro.pojo.User;
+import com.lvhong.core.pojo.TmDictonary;
+import com.lvhong.core.pojo.User;
+import com.lvhong.core.service.SelectorsService;
 
 @Controller
 @RequestMapping("/urlInfo")
@@ -28,11 +31,23 @@ public class AgencyController {
 	@Resource
 	private TaskService taskService;
 
+	@Resource
+	private SelectorsService selecetorsService;
+	
+	@Resource
+	private RepositoryService repositoryService;
+	
 	@RequestMapping("/agency")
 	public String agency() {
 		return "/views/pages/agency";
 	}
 
+	/**
+	 * 代办任务列表
+	 * @param session
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("/agency/info")
 	@ResponseBody
 	public PageList<String> agencyInfo(HttpSession session, Integer page) {
@@ -44,7 +59,9 @@ public class AgencyController {
 			List<Task> list = taskService.createTaskQuery().taskAssignee(user.getUserName()).listPage((page - 1) * size , page * size);
 			List<TaskImpl> list1 = new ArrayList<TaskImpl>();
 			for (Task task : list) {
-				list1.add(new TaskImpl(task.getName(), task.getDescription(), task.getId(), task.getCreateTime(),task.getProcessInstanceId()));
+				String substring = task.getProcessDefinitionId().substring(0,task.getProcessDefinitionId().indexOf(":"));
+				String flowUrl = selecetorsService.queryFlowUrl(substring,task.getTaskDefinitionKey());
+				list1.add(new TaskImpl(task.getName(), task.getDescription(), task.getId(), task.getCreateTime(),task.getProcessInstanceId(),flowUrl));
 			}
 			result.setTotal(count.intValue());
 			String jsonString = JSON.toJSONString(list1, SerializerFeature.WriteDateUseDateFormat);
@@ -56,12 +73,58 @@ public class AgencyController {
 		return result;
 	}
 
+	/**
+	 * 流程任务具体页面跳转
+	 * @param processInstanceId
+	 * @param taskId
+	 * @param action
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/agencyUrl")
-	public String agencyUrl(String id,String processInstanceId,Model model) {
+	public String agencyUrl(String processInstanceId,String taskId,String action,Model model) {
 		ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
 		String businessKey = pi.getBusinessKey();
-		model.addAttribute("businessKey",businessKey);
-		model.addAttribute("taskId", id);
-		return "/views/pages/agencyUrl";
+		TmDictonary tmDictionary = selecetorsService.queryDictInfo(businessKey);
+		model.addAttribute("tmDictionary", tmDictionary);
+		model.addAttribute("taskId", taskId);
+		model.addAttribute("processInstanceId", processInstanceId);
+		if("edit".equals(action)) {
+			return "/views/pages/urlTypeEdit";
+		}else {
+			return "/views/pages/urlTypeView";
+		}
+		
 	}
+	
+	/**
+	 * 超级管理员审批流程
+	 * @param taskId
+	 * @param approveAdvice
+	 * @param processInstanceId
+	 * @param flags
+	 * @return
+	 */
+	@RequestMapping("/agencyapprove")
+	@ResponseBody
+	public String agencyAdminapprove(String taskId,String approveAdvice,String processInstanceId,Boolean flags,Long dictId) {	
+		selecetorsService.agencyAdminapprove(taskId,approveAdvice,processInstanceId,flags,dictId);
+		return "";
+	}
+	
+	/**
+	 * 用户申请流程节点
+	 * @param taskId
+	 * @param approveAdvice
+	 * @param processInstanceId
+	 * @param flags
+	 * @return
+	 */
+	@RequestMapping("/agencyApply")
+	@ResponseBody
+	public String agencyApply(String taskId,String approveAdvice,String processInstanceId,Boolean flags,TmDictonary tmDictionary) {
+		selecetorsService.agencyApply(taskId,approveAdvice,processInstanceId,flags,tmDictionary);
+		return "";
+	}
+	
 }

@@ -196,4 +196,7 @@
   		#{param}
   	</foreach>
   </delete>
+  <select id="queryImportUrlInfo" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from tm_url_info
+  </select>
 </mapper>

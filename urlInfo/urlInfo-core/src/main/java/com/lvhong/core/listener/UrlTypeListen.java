@@ -14,7 +14,8 @@ public class UrlTypeListen implements TaskListener {
 
 	@Override
 	public void notify(DelegateTask delegateTask) {
-		delegateTask.setAssignee((String) runtimeService.getVariable(delegateTask.getExecutionId(), "user"));
+		String user = (String) delegateTask.getVariable("user");
+		delegateTask.setAssignee(user);
 	}
 
 }

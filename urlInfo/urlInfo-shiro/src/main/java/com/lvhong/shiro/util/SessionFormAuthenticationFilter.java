@@ -8,7 +8,8 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
-import com.lvhong.shiro.pojo.User;
+
+import com.lvhong.core.pojo.User;
 
 public class SessionFormAuthenticationFilter extends FormAuthenticationFilter {
 	

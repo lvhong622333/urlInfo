@@ -18,9 +18,9 @@
     from tm_dictonary
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tm_dictonary
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </delete>
   <insert id="insert" parameterType="com.lvhong.core.pojo.TmDictonary">
     insert into tm_dictonary (id, dict_value, dict_name, 
@@ -95,7 +95,7 @@
         isvalid = #{isvalid,jdbcType=CHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lvhong.core.pojo.TmDictonary">
     update tm_dictonary
@@ -143,4 +143,16 @@
   		#{param}
   	</foreach>
   </update>
+  <select id="queryDictInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from tm_dictonary where id = #{businessKey}
+  </select>
+  <select id="queryFlowUrl" resultType="java.lang.String">
+  	select url_address from tm_flow_url where process_id = #{0} and task_name = #{1}
+  </select>
+  <update id="updateIsvalid" parameterType="java.lang.Long">
+  	update tm_dictonary set isvalid = 1 where id = #{dictId}
+  </update>
+  <select id="queryImportDictInfo" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"></include> from tm_dictonary  where isvalid = 1
+  </select>
 </mapper>

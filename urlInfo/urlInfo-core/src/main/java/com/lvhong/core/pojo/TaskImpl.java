@@ -8,13 +8,14 @@ public class TaskImpl {
 		super();
 	}
 
-	public TaskImpl(String name, String description, String taskId, Date createTime,String processInstanceId) {
+	public TaskImpl(String name, String description, String taskId, Date createTime,String processInstanceId,String flowUrl) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.taskId = taskId;
 		this.createTime = createTime;
 		this.processInstanceId = processInstanceId;
+		this.flowUrl = flowUrl;
 	}
 
 	private String name;
@@ -22,6 +23,15 @@ public class TaskImpl {
 	private String taskId;
 	private String processInstanceId;
 	private Date createTime;
+	private String flowUrl;
+	
+	public String getFlowUrl() {
+		return flowUrl;
+	}
+
+	public void setFlowUrl(String flowUrl) {
+		this.flowUrl = flowUrl;
+	}
 
 	public String getName() {
 		return name;

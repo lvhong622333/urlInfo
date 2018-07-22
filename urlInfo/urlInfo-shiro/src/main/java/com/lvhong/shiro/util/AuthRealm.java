@@ -11,7 +11,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import com.lvhong.shiro.pojo.User;
+
+import com.lvhong.core.pojo.User;
 import com.lvhong.shiro.service.UserService;
 
 public class AuthRealm extends AuthorizingRealm{

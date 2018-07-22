@@ -1,4 +1,4 @@
-package com.lvhong.shiro.pojo;
+package com.lvhong.core.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
