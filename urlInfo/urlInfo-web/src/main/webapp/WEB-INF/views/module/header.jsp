@@ -36,7 +36,7 @@
 			<li class="dropdown dropdown-extended dropdown-inbox dropdown-dark"
 				id="header_inbox_bar"><a href="javascript:;"
 				class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
-				data-close-others="true"> 消息 <span class="badge badge-default"
+				data-close-others="true" onclick="window.location.href='${pageContext.request.contextPath}/urlInfo/attachment'">附件<span class="badge badge-default"
 					style="right: -17px !important;" id="news_count"></span></a></li>
 			<li class="dropdown dropdown-extended dropdown-inbox dropdown-dark"
 				id="header_inbox_bar"><a href="javascript:void(0);" onclick="window.location.href='${pageContext.request.contextPath}/urlInfo/agency'"
