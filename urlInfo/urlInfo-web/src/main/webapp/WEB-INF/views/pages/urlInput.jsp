@@ -32,6 +32,10 @@
 					$("#selectpicker").append(opt);
 					$("#selectpicker").selectpicker('refresh');
 				})
+		debugger;
+		if('${inputFailInfo}' != null && '${inputFailInfo}' != ''){
+			$.MsgBox.Alert("确认框",'${inputFailInfo}');
+		}
 	});
 </script>
 </head>

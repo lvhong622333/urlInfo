@@ -6,8 +6,9 @@ import java.util.Set;
 import javax.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import com.lvhong.core.pojo.User;
 import com.lvhong.shiro.dao.TmSysUserMapper;
-import com.lvhong.shiro.pojo.User;
 import com.lvhong.shiro.service.UserService;
 
 

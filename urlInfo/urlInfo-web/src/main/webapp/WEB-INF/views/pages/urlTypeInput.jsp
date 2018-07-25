@@ -92,6 +92,9 @@
 		}
 		
 	}
+	function importDictInfo(){
+		window.location.href="${pageContext.request.contextPath}/urlInfo/importDictInfo";
+	}
 </script>
 </head>
 <body>
@@ -117,6 +120,10 @@
 			<button id="btn-del" type="button" class="btn"
 				onclick="deleteDictInfo()">
 				<span aria-hidden="true" class="icon icon-remove-sign"></span>删除
+			</button>
+			<button id="btn-del" type="button" class="btn"
+				onclick="importDictInfo()">
+				<span aria-hidden="true" class="icon icon-remove-sign"></span>导出
 			</button>
 		</div>
 	</div>

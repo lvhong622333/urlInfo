@@ -19,6 +19,8 @@
 
 	<!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:appconfig.properties" />
+	<!-- 多个配置文件加载写法 -->
+	<!-- <context:property-placeholder ignore-unresolvable="true" location="classpath:appconfig.properties,classpath:jdbc.properties" /> -->
 
 	<!-- 加载应用属性实例，可通过 @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 
 		方式引用 -->
@@ -93,7 +95,7 @@
 		</property>
 	</bean>
 	
-	<bean id="propertyConfiger" class="com.lvhong.core.util.PropertyConfiger">
+	<!-- <bean id="propertyConfiger" class="com.lvhong.core.util.PropertyConfiger">
 	   <property name="ignoreUnresolvablePlaceholders" value="true"/>
 	   <property name="ignoreResourceNotFound" value="true"/>
 	   <property name="locations">
@@ -101,7 +103,7 @@
 	          <value>classpath:appconfig.properties</value>
 	       </list>
 	   </property>
-	</bean>
+	</bean> -->
 	
 	<!-- 慢SQL记录 -->
     <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">

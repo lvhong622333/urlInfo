@@ -1,5 +1,7 @@
 package com.lvhong.web.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -33,6 +35,11 @@ public class UrlInfoServiceImpl implements UrlInfoService {
 	public void deleteUrlInfo(String param) {
 		String[] paramList = param.split(",");
 		tmUrlInfoMapper.deleteBatchByPrimaryKey(paramList);
+	}
+
+	@Override
+	public List<TmUrlInfo> queryImportUrlInfo() {
+		return tmUrlInfoMapper.queryImportUrlInfo();
 	}
 
 }

@@ -16,10 +16,11 @@
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
 		<property name="dataSource" ref="dataSource" />
 		<property name="transactionManager" ref="transactionManager" />
-		<property name="databaseSchemaUpdate" value="true" />
-		<property name="jobExecutorActivate" value="false" />
-		<!-- <property name="mailServerHost" value="localhost" />
-		<property name="mailServerPort" value="5025" /> -->
+		<property name="databaseSchemaUpdate" value="false" />
+		<!-- 启动时建立job任务连接线程池 -->
+		<property name="asyncExecutorActivate" value="false" />
+		<!-- 指定数据库类型 -->
+		<!-- <property name="databaseType" value="mysql"></property> -->
 		<property name="deploymentResources" value="classpath*:/bpmn/**/*.bpmn"/>
 	</bean>
 

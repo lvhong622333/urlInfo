@@ -5,11 +5,11 @@ import com.lvhong.core.pojo.TmDictonary;
 import com.lvhong.core.pojo.TmDictonarySearch;
 
 public interface TmDictonaryMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(TmDictonary record);
 
-    int insertSelective(TmDictonary record);
+    void insertSelective(TmDictonary record);
 
     TmDictonary selectByPrimaryKey(Integer id);
 
@@ -24,4 +24,16 @@ public interface TmDictonaryMapper {
 	Integer urlTypeSearchCount(TmDictonarySearch search);
 
 	void deleteDictInfo(String[] infos);
+
+	Long querySequenceId();
+
+	TmDictonary queryDictInfo(String businessKey);
+
+	String queryFlowUrl(String processDefinitionKey, String taskDefinitionKey);
+
+	void updateIsvalid(Long dictId);
+
+	List<TmDictonary> queryImportDictInfo();
+
+
 }

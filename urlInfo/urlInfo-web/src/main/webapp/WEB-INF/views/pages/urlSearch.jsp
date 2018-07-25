@@ -16,6 +16,9 @@
 		$("#urlSearch").addClass("active");
 		$("#urlTypeInput").removeClass("active");
 	})
+	function importUrlInfo(){
+		window.location.href="${pageContext.request.contextPath}/urlInfo/importUrlInfo";
+	}
 </script>
 </head>
 <body>
@@ -37,6 +40,10 @@
 			<button id="btn-del" type="button" class="btn"
 				onclick="deleteUrlInfo()">
 				<span aria-hidden="true" class="icon icon-remove-sign"></span>删除
+			</button>
+			<button id="btn-del" type="button" class="btn"
+				onclick="importUrlInfo()">
+				<span aria-hidden="true" class="icon icon-remove-sign"></span>导出
 			</button>
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

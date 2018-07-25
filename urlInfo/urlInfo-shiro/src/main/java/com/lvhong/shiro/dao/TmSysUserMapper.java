@@ -3,7 +3,8 @@ package com.lvhong.shiro.dao;
 import java.util.Map;
 import java.util.Set;
 
-import com.lvhong.shiro.pojo.User;
+import com.lvhong.core.pojo.User;
+
 
 public interface TmSysUserMapper {
     int deleteByPrimaryKey(Long id);

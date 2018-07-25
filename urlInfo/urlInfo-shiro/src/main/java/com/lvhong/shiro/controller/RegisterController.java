@@ -11,8 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lvhong.core.pojo.User;
 import com.lvhong.core.util.MD5Utils;
-import com.lvhong.shiro.pojo.User;
 import com.lvhong.shiro.service.UserService;
 
 @Controller

@@ -1,5 +1,7 @@
 package com.lvhong.web.service;
 
+import java.util.List;
+
 import com.lvhong.web.pojo.TmUrlInfo;
 
 public interface UrlInfoService {
@@ -9,5 +11,7 @@ public interface UrlInfoService {
 	void updateUrlInfo(TmUrlInfo urlInfo);
 
 	void deleteUrlInfo(String param);
+
+	List<TmUrlInfo> queryImportUrlInfo();
 
 }

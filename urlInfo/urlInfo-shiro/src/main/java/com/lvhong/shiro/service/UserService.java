@@ -3,7 +3,7 @@ package com.lvhong.shiro.service;
 import java.util.Map;
 import java.util.Set;
 
-import com.lvhong.shiro.pojo.User;
+import com.lvhong.core.pojo.User;
 
 
 public interface UserService {
