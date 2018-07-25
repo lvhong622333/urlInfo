@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvhong.web.dao.TmFileRouteMapper">
+  <resultMap id="BaseResultMap" type="com.lvhong.web.pojo.TmFileRoute">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="route_name" jdbcType="VARCHAR" property="routeName" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_size" jdbcType="BIGINT" property="fileSize" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="isvalid" jdbcType="CHAR" property="isvalid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, route_name, file_name, file_size, create_time, create_by, isvalid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_file_route
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tm_file_route
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lvhong.web.pojo.TmFileRoute">
+    insert into tm_file_route (id, route_name, file_name, 
+      file_size, create_time, create_by, 
+      isvalid)
+    values (#{id,jdbcType=BIGINT}, #{routeName,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=BIGINT}, 
+      #{isvalid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lvhong.web.pojo.TmFileRoute">
+    insert into tm_file_route
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="routeName != null">
+        route_name,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="routeName != null">
+        #{routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lvhong.web.pojo.TmFileRoute">
+    update tm_file_route
+    <set>
+      <if test="routeName != null">
+        route_name = #{routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        file_size = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lvhong.web.pojo.TmFileRoute">
+    update tm_file_route
+    set route_name = #{routeName,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=BIGINT},
+      isvalid = #{isvalid,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insertFileInfo">
+  	insert into tm_file_route(id,route_name,file_name,file_size,create_time,create_by) values
+  	 <foreach collection="list" item="file" separator=",">
+        ((select nextval('url_info_id')),#{file.routeName},#{file.fileName},#{file.fileSize},#{file.createTime},#{file.createBy})
+     </foreach>
+  </insert>
+  <select id="queryMyFile" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from tm_file_route where isvalid = 1 limit #{index},#{size}
+  </select>
+  <select id="queryFilePageSize" resultType="java.lang.Integer">
+  	select count(*) from tm_file_route where isvalid = 1
+  </select>
+</mapper>

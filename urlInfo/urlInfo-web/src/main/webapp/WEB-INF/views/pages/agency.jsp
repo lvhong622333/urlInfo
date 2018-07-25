@@ -15,8 +15,7 @@
 		$("#urlSearch").removeClass("active");
 		$("#urlInput").removeClass("active");
 		$("#urlTypeInput").removeClass("active");
-		$.post(
-						"${pageContext.request.contextPath}/urlInfo/agency/info",
+		$.post("${pageContext.request.contextPath}/urlInfo/agency/info",
 						{
 							page : 1
 						},
