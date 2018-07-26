@@ -20,13 +20,13 @@ public class AttachmentServiceImpl implements AttachmentService {
 	}
 
 	@Override
-	public List<TmFileRoute> queryMyFile(Map<String, Integer> map) {
+	public List<TmFileRoute> queryMyFile(Map<String, Object> map) {
 		return tmfileRouteMapper.queryMyFile(map);
 	}
 
 	@Override
-	public Integer queryFilePageSize() {
-		return tmfileRouteMapper.queryFilePageSize();
+	public Integer queryFilePageSize(Map<String, Object> map) {
+		return tmfileRouteMapper.queryFilePageSize(map);
 	}
 
 	@Override

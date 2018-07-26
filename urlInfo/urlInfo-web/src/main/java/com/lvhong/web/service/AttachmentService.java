@@ -9,9 +9,9 @@ public interface AttachmentService {
 
 	void insertFileInfo(List<TmFileRoute> list);
 
-	List<TmFileRoute> queryMyFile(Map<String, Integer> map);
+	List<TmFileRoute> queryMyFile(Map<String, Object> map);
 
-	Integer queryFilePageSize();
+	Integer queryFilePageSize(Map<String, Object> map);
 
 	void deleteFile(Long id);
 

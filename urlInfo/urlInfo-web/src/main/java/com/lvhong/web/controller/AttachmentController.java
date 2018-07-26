@@ -113,11 +113,13 @@ public class AttachmentController {
 	
 	@RequestMapping("/myFile")
 	public String myFile(Model model) {
-		Map<String,Integer> map = new HashMap<String,Integer>();
+		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("index", 0);
 		map.put("size", 10);
+		User user = (User) session.getAttribute("user");
+		map.put("userId", user.getId());
 		List<TmFileRoute> list = attachmentService.queryMyFile(map);
-		Integer pageSize = attachmentService.queryFilePageSize();
+		Integer pageSize = attachmentService.queryFilePageSize(map);
 		Double ceil = Math.ceil(pageSize*1.0/10);
 		model.addAttribute("tmFileRoute", list);
 		model.addAttribute("pageSize",ceil.longValue());
@@ -128,11 +130,13 @@ public class AttachmentController {
 	@ResponseBody
 	public PageList<TmFileRoute> fileInfo(Integer page) {
 		PageList<TmFileRoute> result = new PageList<TmFileRoute>();
-		Map<String,Integer> map = new HashMap<String,Integer>();
+		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("index", (page - 1)*10);
 		map.put("size", 10);
+		User user = (User) session.getAttribute("user");
+		map.put("userId", user.getId());
 		List<TmFileRoute> list = attachmentService.queryMyFile(map);
-		Integer size = attachmentService.queryFilePageSize();
+		Integer size = attachmentService.queryFilePageSize(map);
 		Long pageSize = ((Double)Math.ceil(size*1.0/10)).longValue();
 		result.setRows(list);
 		result.setPageSize(pageSize);

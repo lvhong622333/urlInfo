@@ -121,9 +121,9 @@
      </foreach>
   </insert>
   <select id="queryMyFile" resultMap="BaseResultMap">
-  	select <include refid="Base_Column_List" /> from tm_file_route where isvalid = 1 limit #{index},#{size}
+  	select <include refid="Base_Column_List" /> from tm_file_route where isvalid = 1 and create_by = #{userId} limit #{index},#{size}
   </select>
   <select id="queryFilePageSize" resultType="java.lang.Integer">
-  	select count(*) from tm_file_route where isvalid = 1
+  	select count(*) from tm_file_route where isvalid = 1 and create_by = #{userId}
   </select>
 </mapper>
